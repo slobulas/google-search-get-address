@@ -56,15 +56,13 @@
 
   casper.then(function () {
 
-    // TO FIX: bug in the layout of the CSV file. 2014-11-06 - Pete Herbst
     for (var i = 0; i < searchTerms.length; i++) {
-      var searchTermForCsv = '"' + searchTerms[i] + '"';
-      outputToCsv = outputToCsv.concat(searchTermForCsv);
-      var addressForCsv = '"' + addresses[i] + '"';
-      outputToCsv = outputToCsv.concat(addressForCsv);
-      outputToCsv = outputToCsv.concat('\n');
+      if (i === 0) {
+        fs.write(outputPath, '"' + searchTerms[i] + '",' + '"' + addresses[i] + '"\n', 'w');
+      } else {
+        fs.write(outputPath, '"' + searchTerms[i] + '",' + '"' + addresses[i] + '"\n', 'a');
+      }      
     }
-    fs.write(outputPath, outputToCsv, 'w');
   });
 
   casper.run();
