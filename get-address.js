@@ -7,9 +7,14 @@
   var data = [];
   var searchTerms = [];
   var addresses = [];
-  var outputToCsv = [];
+
+  // A CSV file with the search terms you want to search on; should be in the first column only.
   var stream = fs.open('example.csv', 'r');
+
+  // Name of the output CSV file you want to use.
   var outputPath = 'output.csv';
+
+  // Read the CSV file with the search terms, put into an array.
   var line = stream.readLine();
   while (line) {
     searchTerms.push(line);
@@ -38,9 +43,11 @@
 
   casper.start();
 
+  // Primary function that iterates over our search term array and attempt to get location results from google.
+  // If no search term is found and Casper times out, we add address not found to the address array.
   for (var i = 0; i < data.length; i++) {
     var url = 'https://google.com/search?q=' + data[i];
-    casper.thenOpen(url, function (outputToCsv) {
+    casper.thenOpen(url, function () {
     }).waitUntilVisible('#lclbox .ts',
       function then() {
         var output = this.getHTML('#lclbox table.ts tbody tr td:nth-child(2)').replace(/(<([^>]+)>)/ig, "");
@@ -50,12 +57,11 @@
       function onTimeout() {
         addresses.push("NO ADDRESS FOUND");
       },
-      7000
+      7000 // Time (in ms) we should wait for location to appear on the page.
     );
   }
 
   casper.then(function () {
-
     for (var i = 0; i < searchTerms.length; i++) {
       if (i === 0) {
         fs.write(outputPath, '"' + searchTerms[i] + '",' + '"' + addresses[i] + '"\n', 'w');
