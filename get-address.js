@@ -8,11 +8,30 @@
   var searchTerms = [];
   var addresses = [];
 
+  // Setting up CasperJS variables.
+  var casper = require('casper').create({
+    stepTimeout: 7000,
+    verbose: true,
+    onError: function (self, message) {
+      console.log("Error: " + m);
+      self.exit();
+    },
+    onStepTimeout: function (self, message) {
+      console.log("Address not found.");
+    }
+  });
+
+  if ((casper.cli.has(0) && casper.cli.has(1)) === false) {
+    console.log("You must supply an input file as your first command line argument and an output file name as the second argument.");
+    casper.exit();
+  }
+
   // A CSV file with the search terms you want to search on; should be in the first column only.
-  var stream = fs.open(casper.cli.get(0), 'r');
+  var inputFile = casper.cli.get(0).toString();
+  var stream = fs.open(inputFile, 'r');
 
   // Name of the output CSV file you want to use.
-  var outputPath = casper.cli.get(1);
+  var outputPath = casper.cli.get(1).toString();
 
   // Read the CSV file with the search terms, put into an array.
   var line = stream.readLine();
@@ -23,24 +42,6 @@
     line = stream.readLine();
   }
   stream.close();
-
-  // Setting up CasperJS variables.
-  var casper = require('casper').create({
-    stepTimeout: 7000,
-    verbose: true,
-    onError: function (self, message) {
-      console.log("Error: " + m);
-      self.exit();
-    },
-    onStepTimeout: function(self, message) {
-      console.log("Address not found.");
-    }
-  });
-
-  if ( (casper.cli.has(0) && casper.cli.has(1)) === false) {
-    this.echo("You must supply an input file as your first command line argument and an output file name as the second argument.");
-    casper.exit();
-  }
 
   // User Agent must be set in order to get results.
   casper.userAgent("Mozilla/5.0 (Windows NT 6.1; WOW64)" +
