@@ -21,17 +21,19 @@
     }
   });
 
-  if ((casper.cli.has(0) && casper.cli.has(1)) === false) {
-    console.log("You must supply an input file as your first command line argument and an output file name as the second argument.");
-    casper.exit();
+  casper.cli.drop("cli");
+  casper.cli.drop("casper-path");
+
+  if (casper.cli.args.length === 0 && Object.keys(casper.cli.options).length === 0) {
+    casper.echo("You must supply an input file as your first command line argument and an output file name as the second argument.").exit();
   }
 
   // A CSV file with the search terms you want to search on; should be in the first column only.
-  var inputFile = casper.cli.get(0).toString();
+  var inputFile = casper.cli.raw.get(0);
   var stream = fs.open(inputFile, 'r');
 
   // Name of the output CSV file you want to use.
-  var outputPath = casper.cli.get(1).toString();
+  var outputPath = casper.cli.raw.get(1);
 
   // Read the CSV file with the search terms, put into an array.
   var line = stream.readLine();
