@@ -39,7 +39,7 @@
   var line = stream.readLine();
   while (line) {
     searchTerms.push(line);
-    var string = line.replace(" ", "+");
+    var string = line.replace(" ", "+").replace('"', '').replace('""', '').replace("/", " ");
     data.push(string);
     line = stream.readLine();
   }
