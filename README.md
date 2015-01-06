@@ -9,4 +9,4 @@ Using this script in the command line requires an argument, the input file that 
 Here is an example of script usage:
 casperjs get-address.js input.csv
 
-*Please note: the name of the script needs to come before the two command line arguments.*
+*Please note: the name of the script needs to come before the argument.*
