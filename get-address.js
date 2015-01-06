@@ -51,7 +51,6 @@
   casper.start();
 
   // Primary function that iterates over our search term array and attempt to get location results from google.
-  // If no search term is found and Casper times out, we add address not found to the address array.
   for (var i = 0; i < data.length; i++) {
     var url = 'https://google.com/search?q=' + data[i];
     casper.thenOpen(url, function () {
