@@ -24,7 +24,7 @@
   casper.cli.drop("casper-path");
 
   if (casper.cli.args.length === 0 && Object.keys(casper.cli.options).length === 0) {
-    casper.echo("You must supply an input file as your first command line argument and an output file name as the second argument.").exit();
+    casper.echo("You must supply an input file as your first command line argument.").exit();
   }
 
   // A CSV file with the search terms you want to search on; should be in the first column only.
@@ -61,9 +61,7 @@
         var finalOutput = output.replace("(", " (");
         console.log(finalOutput);
       },
-      function onTimeout() {
-        console.log("NO ADDRESS FOUND");
-      },
+      function onTimeout() {},
       7000 // Time (in ms) we should wait for location to appear on the page.
     );
   }
