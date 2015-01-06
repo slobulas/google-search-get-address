@@ -6,7 +6,6 @@
   var utils = require('utils');
   var data = [];
   var searchTerms = [];
-  var addresses = [];
 
   // Setting up CasperJS variables.
   var casper = require('casper').create({
@@ -60,24 +59,14 @@
       function then() {
         var output = this.getHTML('#lclbox table.ts tbody tr td:nth-child(2)').replace(/(<([^>]+)>)/ig, "");
         var finalOutput = output.replace("(", " (");
-        addresses.push(finalOutput);
+        console.log(finalOutput);
       },
       function onTimeout() {
-        addresses.push("NO ADDRESS FOUND");
+        console.log("NO ADDRESS FOUND");
       },
       7000 // Time (in ms) we should wait for location to appear on the page.
     );
   }
-
-  casper.then(function () {
-    for (var i = 0; i < searchTerms.length; i++) {
-      if (i === 0) {
-        fs.write(outputPath, '"' + searchTerms[i] + '",' + '"' + addresses[i] + '"\n', 'w');
-      } else {
-        fs.write(outputPath, '"' + searchTerms[i] + '",' + '"' + addresses[i] + '"\n', 'a');
-      }      
-    }
-  });
 
   casper.run();
 
