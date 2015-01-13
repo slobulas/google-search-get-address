@@ -38,7 +38,7 @@
   var line = stream.readLine();
   while (line) {
     searchTerms.push(line);
-    var string = line.replace(" ", "+").replace('"', '').replace('""', '').replace("/", " ");
+    var string = line.replace(/ /g, "+").replace(/"/g, '').replace(/""/g, '').replace(/\//g, " ");
     data.push(string);
     line = stream.readLine();
   }
