@@ -31,9 +31,6 @@
   var inputFile = casper.cli.raw.get(0);
   var stream = fs.open(inputFile, 'r');
 
-  // Name of the output CSV file you want to use.
-  var outputPath = casper.cli.raw.get(1);
-
   // Read the CSV file with the search terms, put into an array.
   var line = stream.readLine();
   while (line) {
