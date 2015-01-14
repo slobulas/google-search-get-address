@@ -57,9 +57,11 @@
     casper.thenOpen(url, function (term) {
     }).waitUntilVisible('#lclbox .ts',
       function then() {
-        var output = this.getHTML('#lclbox table.ts tbody tr td:nth-child(2)').replace(/(<([^>]+)>)/ig, "");
-        var finalOutput = output.replace("(", " (");
-        this.echo(term + "\t" + finalOutput);
+        var result = this.getHTML('#lclbox table.ts tbody tr td:nth-child(2)')
+            .replace(/(<([^>]+)>)/ig, "")
+            .replace("(", " (")
+            .replace("+", " +");
+        this.echo(term + "\t" + result);
       },
       function onWaitTimeout() {
         this.echo(term + "\t" + "Address not found");
