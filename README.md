@@ -10,3 +10,9 @@ Here is an example of script usage:
 casperjs get-address.js input.csv
 
 *Please note: the name of the script needs to come before the argument.*
+
+# Testing #
+
+Testing uses jasmine-node which can be installed via command line, globally.
+
+npm install jasmine-node -g
