@@ -16,3 +16,4 @@ casperjs get-address.js input.csv
 Testing uses jasmine-node which can be installed via command line, globally.
 
 npm install jasmine-node -g
+
