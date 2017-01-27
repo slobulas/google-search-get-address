@@ -55,9 +55,9 @@
     // Open the URL and wait for the table cell with the address information to appear.
     // Add a space before the phone number and print the resulting address.
     casper.thenOpen(url, function (term) {
-    }).waitUntilVisible('#lclbox .ts',
+    }).waitUntilVisible('#rhs_block ._OKe',
       function then() {
-        var result = this.getHTML('#lclbox table.ts tbody tr td:nth-child(2)')
+        var result = this.getHTML('#rhs_block ._OKe ._RBg .mod ._Xbe')
             .replace(/(<([^>]+)>)/ig, "")
             .replace("(", " (")
             .replace("+", " +");
