@@ -1,6 +1,11 @@
 (function () {
   'use strict';
-  
+
+  // CONFIGURE GOOGLE SEARCH RESULTS DIV.
+  // Google search results HTML changes over time, change
+  // this value to reflect their current search results HTML.
+  var gsrAddressDiv = "#rhs_block ._eFb ._Xbe";
+
   // Setting up requirements and variables.
   var fs = require('fs');
   var searchTerms = [];
@@ -55,9 +60,9 @@
     // Open the URL and wait for the table cell with the address information to appear.
     // Add a space before the phone number and print the resulting address.
     casper.thenOpen(url, function (term) {
-    }).waitUntilVisible('#rhs_block ._OKe',
+    }).waitUntilVisible(gsrAddressDiv,
       function then() {
-        var result = this.getHTML('#rhs_block ._OKe ._RBg .mod ._Xbe')
+        var result = this.getHTML(gsrAddressDiv)
             .replace(/(<([^>]+)>)/ig, "")
             .replace("(", " (")
             .replace("+", " +");
