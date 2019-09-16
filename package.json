@@ -1,0 +1,22 @@
+{
+  "name": "google-search-get-address",
+  "version": "1.0.0",
+  "description": "This script requires CasperJS. Installation instructions can be found here: http://docs.casperjs.org/en/latest/installation.html",
+  "main": "get-address.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/slobulas/google-search-get-address.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/slobulas/google-search-get-address/issues"
+  },
+  "homepage": "https://github.com/slobulas/google-search-get-address#readme",
+  "dependencies": {
+    "puppeteer": "^1.20.0"
+  }
+}
