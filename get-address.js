@@ -4,7 +4,7 @@
   // CONFIGURE GOOGLE SEARCH RESULTS DIV.
   // Google search results HTML changes over time, change
   // this value to reflect their current search results HTML.
-  var gsrAddressDiv = "#rhs_block ._eFb ._Xbe";
+  var gsrAddressDiv = "#rhs_block .Z1hOCe .LrzXr";
 
   // Setting up requirements and variables.
   var fs = require('fs');
